@@ -1,0 +1,5 @@
+CC = gcc # the compiler
+SRC = main.c school.c # the .c files
+
+all:
+	$(CC) $(SRC) -o school
