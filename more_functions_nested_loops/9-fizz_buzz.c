@@ -11,18 +11,19 @@ int main(void)
 {
 	int i = 3;
 
-	printf("1 2 "); 
+	printf("1 2 ");
 
-	while (i <= 100 )
+	while (i <= 100)
 	{
-		if(i % 3 == 0 && i % 5 == 0)
+		if (i % 3 == 0 && i % 5 == 0)
 			printf(" FizzBuzz");
 		else
 		{
-			if(i % 3 == 0)
+			if (i % 3 == 0)
 				printf(" Fizz");
 			else
-			{	if(i % 5 == 0)
+			{
+				if (i % 5 == 0)
 					printf(" Buzz");
 				else
 					printf(" %d", i);
@@ -30,7 +31,7 @@ int main(void)
 		}
 		i++;
 	}
-	
+
 	printf("\n");
 	return (0);
 }
