@@ -11,7 +11,7 @@ int main(void)
 {
 	int i = 3;
 
-	printf("1 2 ");
+	printf("1 2");
 
 	while (i <= 100)
 	{
