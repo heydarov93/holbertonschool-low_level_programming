@@ -21,11 +21,12 @@ void print_rev(char *s)
 
 	dec = *s;
 
-	while (dec)
+	while (length >= 0)
 	{
 
-		length--;
+
 		dec = *(s + length);
+		length--;
 		_putchar(dec);
 	}
 
