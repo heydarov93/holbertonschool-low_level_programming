@@ -23,9 +23,10 @@ void print_rev(char *s)
 
 	while (dec)
 	{
-		_putchar(dec);
+
 		length--;
 		dec = *(s + length);
+		_putchar(dec);
 	}
 
 	_putchar('\n');
