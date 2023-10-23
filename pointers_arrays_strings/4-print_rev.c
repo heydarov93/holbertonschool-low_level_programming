@@ -24,9 +24,8 @@ void print_rev(char *s)
 	while (length >= 0)
 	{
 
-
-		dec = *(s + length);
 		length--;
+		dec = *(s + length);
 		_putchar(dec);
 	}
 
