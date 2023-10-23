@@ -21,7 +21,7 @@ void print_rev(char *s)
 
 	dec = *s;
 
-	while (length >= 0)
+	while (length > 0)
 	{
 
 		length--;
