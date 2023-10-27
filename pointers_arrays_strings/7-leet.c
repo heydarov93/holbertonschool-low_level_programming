@@ -11,7 +11,7 @@
 char *leet(char *s)
 {
 	int i, j;
-	char matches[5][5] = {
+	char matches[2][5] = {
 		{'a', 'e', 'o', 't', 'l'},
 		{'4', '3', '0', '7', '1'}
 	};
