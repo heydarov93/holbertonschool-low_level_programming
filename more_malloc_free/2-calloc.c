@@ -22,13 +22,13 @@ void *_calloc(unsigned int nmemb, unsigned int size)
 
 	if (new_arr)
 	{
-		while (i < nmemb)
+		while (i < total_bytes)
 		{
-			new_arr[i] = '\0';
+			new_arr[i] = 0;
 			i++;
 		}
 
-		return ((void *)new_arr);
+		return (new_arr);
 	}
 
 	free(new_arr);
