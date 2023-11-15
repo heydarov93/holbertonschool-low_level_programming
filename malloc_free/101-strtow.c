@@ -3,6 +3,95 @@
 #include <string.h>
 
 /**
+ * create_int_arr - creates array of int
+ * @str: original str in order to count it's words length
+ * @str_length: length of the original str
+ * @w_count: count of the words inside original str
+ *
+ *
+ * Return: pointer to an array of int
+ */
+
+int *create_int_arr(char *str, int str_length, int w_count)
+{
+	int i, j, c;
+	int *length_words;
+
+	length_words = malloc(sizeof(int) * w_count);
+
+	if (!length_words)
+		return (NULL);
+
+i = j = c = 0;
+while (j < str_length)
+{
+if (str[j] != ' ')
+{
+c++;
+
+if (str[j + 1] == ' ' || str[j + 1] == '\0')
+{
+length_words[i] = c;
+c = 0;
+i++;
+}
+}
+j++;
+}
+
+	return (length_words);
+}
+
+/**
+ * create_str_arr - filles empty fileds of an array with str
+ * @empty_arr: already created empty arr
+ * @str: original str for split
+ * @w_count: count of the words inside original str
+ * @str_length: length of the original str
+ *
+ * Return: pointer to an array of strings (words)
+ */
+
+char **create_str_arr(char **empty_arr, char *str, int w_count, int str_length)
+{
+	int i, k, j, c = 0;
+	int *length_words;
+
+	length_words = create_int_arr(str, str_length, w_count);
+
+	if (!length_words)
+		return (NULL);
+
+	for (i = 0; i < w_count; i++)
+        {
+                empty_arr[i] = malloc(sizeof(char) * length_words[i] + 1);
+
+                if (empty_arr[i] == NULL)
+                {
+                        while (i >= 0)
+                                free(empty_arr[i--]);
+
+                        return (NULL);
+                }
+
+                k = 0;
+                for (j = c; j < str_length; j++)
+                {
+                        if (str[j] != ' ')
+                        {
+                                empty_arr[i][k] = str[j];
+                                if (str[j + 1] == ' ' || str[j + 1] == '\0')
+                                        j = str_length;
+
+                                k++;
+                        }
+                        c++;
+                }
+        }
+        empty_arr[i] = NULL;
+	return (empty_arr);
+}
+/**
  * strtow - splits a string into words
  * @str: string
  *
@@ -11,9 +100,8 @@
 
 char **strtow(char *str)
 {
-	int i, j, k, c = 0, str_length, w_count;
-	char **str_arr;
-	int *length_words;
+	int i, str_length, w_count;
+	char **str_arr, **final_arr;
 
 	str_length = strlen(str);
 
@@ -30,56 +118,14 @@ char **strtow(char *str)
 	}
 
 	str_arr = malloc(sizeof(char *) * (w_count + 1));
-	length_words = malloc(sizeof(int) * w_count);
 
-	if (!str_arr || !length_words)
+	if (!str_arr)
 	return (NULL);
 
-	i = 0;
-	j = 0;
-	while (j < str_length)
-	{
-		if (str[j] != ' ')
-		{
-			c++;
+	final_arr = create_str_arr(str_arr, str, w_count, str_length);
 
-			if (str[j + 1] == ' ' || str[j + 1] == '\0')
-			{
-				length_words[i] = c;
-				c = 0;
-				i++;
-			}
-		}
-		j++;
-	}
+	if (final_arr == NULL)
+		return (NULL);
 
-	c = 0;
-	for (i = 0; i < w_count; i++)
-	{
-		str_arr[i] = malloc(sizeof(char) * length_words[i] + 1);
-
-		if (str_arr[i] == NULL)
-		{
-			while (i >= 0)
-				free(str_arr[i--]);
-
-			return (NULL);
-		}
-
-		k = 0;
-		for (j = c; j < str_length; j++)
-		{
-			if (str[j] != ' ')
-			{
-				str_arr[i][k] = str[j];
-				if (str[j + 1] == ' ' || str[j + 1] == '\0')
-					j = str_length;
-
-				k++;
-			}
-			c++;
-		}
-	}
-	str_arr[i] = NULL;
-	return (str_arr);
+	return (final_arr);
 }
