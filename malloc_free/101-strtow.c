@@ -22,22 +22,22 @@ int *create_int_arr(char *str, int str_length, int w_count)
 	if (!length_words)
 		return (NULL);
 
-i = j = c = 0;
-while (j < str_length)
-{
-if (str[j] != ' ')
-{
-c++;
+	i = j = c = 0;
+	while (j < str_length)
+	{
+		if (str[j] != ' ')
+		{
+			c++;
 
-if (str[j + 1] == ' ' || str[j + 1] == '\0')
-{
-length_words[i] = c;
-c = 0;
-i++;
-}
-}
-j++;
-}
+			if (str[j + 1] == ' ' || str[j + 1] == '\0')
+			{
+				length_words[i] = c;
+				c = 0;
+				i++;
+			}
+		}
+		j++;
+	}
 
 	return (length_words);
 }
@@ -63,32 +63,32 @@ char **create_str_arr(char **empty_arr, char *str, int w_count, int str_length)
 		return (NULL);
 
 	for (i = 0; i < w_count; i++)
-        {
-                empty_arr[i] = malloc(sizeof(char) * length_words[i] + 1);
+	{
+		empty_arr[i] = malloc(sizeof(char) * length_words[i] + 1);
 
-                if (empty_arr[i] == NULL)
-                {
-                        while (i >= 0)
-                                free(empty_arr[i--]);
+		if (empty_arr[i] == NULL)
+		{
+			while (i >= 0)
+				free(empty_arr[i--]);
 
-                        return (NULL);
-                }
+			return (NULL);
+		}
 
-                k = 0;
-                for (j = c; j < str_length; j++)
-                {
-                        if (str[j] != ' ')
-                        {
-                                empty_arr[i][k] = str[j];
-                                if (str[j + 1] == ' ' || str[j + 1] == '\0')
-                                        j = str_length;
+		k = 0;
+		for (j = c; j < str_length; j++)
+		{
+			if (str[j] != ' ')
+			{
+				empty_arr[i][k] = str[j];
+				if (str[j + 1] == ' ' || str[j + 1] == '\0')
+					j = str_length;
 
-                                k++;
-                        }
-                        c++;
-                }
-        }
-        empty_arr[i] = NULL;
+				k++;
+			}
+			c++;
+		}
+	}
+	empty_arr[i] = NULL;
 	return (empty_arr);
 }
 /**
