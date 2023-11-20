@@ -11,10 +11,7 @@
 void print_dog(struct dog *d)
 {
 	if (!d)
-	{
-		printf("(nil)\n");
 		return;
-	}
 
 	printf(!(d->name) ? "Name: (nil)\n" : "Name: %s\n", d->name);
 	printf("Age: %.6f\n", d->age);
