@@ -24,10 +24,7 @@ int op_add(int a, int b)
 
 int op_sub(int a, int b)
 {
-	int diff;
-
-	diff = a > b ? a - b : b - a;
-	return (diff);
+	return (a - b);
 }
 
 /**
