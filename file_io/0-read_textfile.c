@@ -37,15 +37,16 @@ ssize_t read_textfile(const char *filename, size_t letters)
 		return (0);
 
 	pchars = read(fd, buf, letters);
-	buf[pchars] = '\0';
+	close(fd);
 
 	if (!pchars)
 		return (0);
 
+	buf[pchars] = '\0';
 	pchars = write(STDOUT_FILENO, buf, pchars);
 
 	if (!pchars)
 		return (0);
-	close(fd);
+
 	return (pchars);
 }
