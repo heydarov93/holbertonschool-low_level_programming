@@ -19,6 +19,13 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	if (strlen(key) == 0 || ht == NULL)
 		return (0);
 
+	if (strcmp(ht->array[index]->key, key) == 0)
+	{
+		ht->array[index]->value = strdup(value);
+		return (1);
+	}
+
+
 	node = calloc(1, sizeof(hash_node_t));
 
 	if (node == NULL)
