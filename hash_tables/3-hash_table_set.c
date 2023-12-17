@@ -16,7 +16,7 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	unsigned long int index = key_index((const unsigned char *)key, ht->size);
 	hash_node_t *node;
 
-	if (strcmp(key, "") != 0)
+	if (strlen(key) == 0 || ht == NULL)
 		return (0);
 
 	node = calloc(1, sizeof(hash_node_t));
